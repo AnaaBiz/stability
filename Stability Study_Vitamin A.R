@@ -1,5 +1,5 @@
 # DATA ANALYSIS - STABILITY STUDIES - Vitamin A 
-# Stability of antioxidant vitamins in commercial vitamin supplements 
+# Stability of antioxidant vitamins in commercial vitamin supplements (http://dx.doi.org/10.1590/s2175-97902018000417700)
 
 # PACOTES
 library(Metrics)
@@ -25,7 +25,7 @@ lm(meses ~ concentracao)
 ggplot(mapping = aes(meses, concentracao)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  #scale_x_continuous(breaks = seq(0, 18, 1)) +  #inÌcio do eixo, final do eixo, intervalo do eixo
+  #scale_x_continuous(breaks = seq(0, 18, 1)) +  #in√≠cio do eixo, final do eixo, intervalo do eixo
   #scale_y_continuous(breaks = seq(0, 200, 10)) +
   labs (x = "Months",
         y = "Concentration (mg/100g)")
@@ -36,7 +36,7 @@ dados <- data.frame(x, y)
 #Criando um vetor no formato pilha
 dat <- stack(dados)
 
-#ANOVA (APENAS UM CRIT…RIO DE CLASSIFICA«√O - ONE WAY)
+#ANOVA (APENAS UM CRIT√âRIO DE CLASSIFICA√á√ÉO - ONE WAY)
 model <- aov(concentracao ~ meses, data = dados)
 
 model
@@ -44,12 +44,12 @@ model
 #Resultado da ANOVA
 summary(model)
 
-#Se o valor de p (Pr(>F)) for menor que 0.05, h· diferenÁa estatÌstica entre as concentraÁıes.
+#Se o valor de p (Pr(>F)) for menor que 0.05, h√° diferen√ßa estat√≠stica entre as concentra√ß√µes.
 
-#NORMALIDADE DOS RESÕDUOS
+#NORMALIDADE DOS RES√çDUOS
 shapiro.test(resid(model))
 
-#Se o p -value do Shapiro for maior que 0.05 = a distribuiÁ„o dos n„o residuos n„o difere da distribuiÁ„o normal.
+#Se o p -value do Shapiro for maior que 0.05 = a distribui√ß√£o dos n√£o residuos n√£o difere da distribui√ß√£o normal.
 
-#LINEARIDADE = grau de associaÁ„o entre as vari·veis testadas - coeficiente de determinaÁ„o
+#LINEARIDADE = grau de associa√ß√£o entre as vari√°veis testadas - coeficiente de determina√ß√£o
 cor(concentracao, meses)
